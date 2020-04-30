@@ -40,7 +40,7 @@ public class Caja implements Comparable<Caja>{
         this.clientesCola.add(new Cliente(idCliente, tipoTransaccion));
     }
      
-    public void atender(){
+    public void despacharCliente(){
     
         this.clientesAtendidos.add(this.clientesCola.pollFirst());
     }

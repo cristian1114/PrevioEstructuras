@@ -49,6 +49,14 @@ public class Banco{
     }
     
     public Cliente buscarCliente(int idCliente){
+        Cliente cliente;
+        
+        for (Caja c : cajas) {
+            cliente = c.buscarClienteCola(idCliente);
+            if (cliente!=null) {
+                return cliente;
+            }
+        }
         return null;
     }
     
@@ -63,15 +71,22 @@ public class Banco{
         //Ver cual caja tiene el menor tiempo de transaccion
         Collections.sort(ca);
         cajas.getFirst().agregarCliente(idCliente,tipoTransaccion);
-        
     }
     
     public void despacharCliente(int idCaja, int valorTransaccion){
-    
+        
+        Caja caja;
+        for (Caja c : this.cajas) {
+            if (c.getIdentificador()==idCaja) {
+                c.despacharCliente();
+                break;
+            }
+        }
+        
     }
     
     public void generarReporte(String rutaNombre, String nombreArchivo){
-    
+            
     }
     
     private void verificarInvariante(){
