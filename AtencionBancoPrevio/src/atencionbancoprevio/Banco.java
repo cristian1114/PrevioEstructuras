@@ -13,7 +13,8 @@ import java.util.LinkedList;
  * @author Cristian
  */
 public class Banco{
-//MAS MODIFICACIONES XD
+    //Modificación
+//MAS MODIFICACIONES XDjhvjhjgjjhg
     private static final String CONSIGNACION = "Consignacion";
     private static final String RETIRO = "Retiro";
     private static final String PAGO_SERVICIO = "Pago Servicio";
