@@ -13,7 +13,7 @@ import java.util.LinkedList;
  * @author Cristian
  */
 public class Banco{
-
+//MAS MODIFICACIONES XD
     private static final String CONSIGNACION = "Consignacion";
     private static final String RETIRO = "Retiro";
     private static final String PAGO_SERVICIO = "Pago Servicio";
@@ -86,7 +86,8 @@ public class Banco{
     }
     
     public void generarReporte(String rutaNombre, String nombreArchivo){
-            
+            //TIPO DE TRANSACCION ATENDIDA POR CAJA, MONTO INICIAL DEL DINERO DE CADA CAJA
+            //EL MONTO ACTUAL DE DINERO, NUMERO DE CLIENTES ATENDIDOS POR CADA CAJA
     }
     
     private void verificarInvariante(){
