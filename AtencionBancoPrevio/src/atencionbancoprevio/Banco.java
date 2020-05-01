@@ -20,6 +20,14 @@ public class Banco{
     private static final String PAGO_SERVICIO = "Pago Servicio";
     private LinkedList<Caja> cajas; 
 
+    public LinkedList<Caja> getCajas() {
+        return cajas;
+    }
+
+    public void setCajas(LinkedList<Caja> cajas) {
+        this.cajas = cajas;
+    }
+
     public Banco() {
         cajas = new LinkedList();
     }
