@@ -68,18 +68,21 @@ public class Banco{
         }
         return null;
     }
-    
-    public void agregarCliente(int idCliente, String tipoTransaccion){
+    //kkkkkkkkkkkkkkkk
+    public boolean agregarCliente(int idCliente, String tipoTransaccion){
         //Buscar las cajas con el tipo de transaccion
         LinkedList<Caja> ca = new LinkedList();
-        for (Caja c : cajas) {
+        for (Caja c : this.cajas) {
             if(c.getTipoTransaccion().equals(tipoTransaccion)){
                 ca.add(c);
             }
         }
+        if(ca.isEmpty())
+            return false;
         //Ver cual caja tiene el menor tiempo de transaccion
         Collections.sort(ca);
         cajas.getFirst().agregarCliente(idCliente,tipoTransaccion);
+        return true;
     }
     
     public void despacharCliente(int idCaja, int valorTransaccion){
