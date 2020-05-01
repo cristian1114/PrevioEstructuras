@@ -18,7 +18,7 @@ import java.util.Iterator;
 import javax.swing.JOptionPane;
 import java.util.LinkedList;
 public class InterfazBanco extends JFrame implements ActionListener{
-  
+    //kkk
     LinkedList<Caja> cajas = new LinkedList();
     Banco banco = new Banco();
     private int contadorCajas = 0;
