@@ -273,7 +273,7 @@ public class InterfazBanco extends JFrame implements ActionListener{
         }
         
         if(e.getSource() == buscarCliente){
-            
+            //manco 
         }
         
         if(e.getSource() == agregarCliente){
