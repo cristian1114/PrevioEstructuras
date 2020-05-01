@@ -20,6 +20,7 @@ import java.util.LinkedList;
 public class InterfazBanco extends JFrame implements ActionListener{
   
     LinkedList<Caja> cajas = new LinkedList();
+    Banco banco = new Banco();
     private int contadorCajas = 0;
     private JLabel labelBienvenido,labelTitle,labelCaja1,labelCaja2,labelCaja3,labelCaja4,labelCaja5,labelCaja6,labelCaja8,labelCajaX;
      
@@ -155,8 +156,8 @@ public class InterfazBanco extends JFrame implements ActionListener{
             labelCaja1.setVisible(true);
             
             Caja caja1 = new Caja(numeroCajaEntero,jcb.getSelectedItem().toString(),dineroInicialEntero);
-            if(!elementoExiste(cajas, numeroCajaEntero)){
-                cajas.add(caja1);
+            if(!elementoExiste(banco.getCajas(), numeroCajaEntero)){
+                banco.getCajas().add(caja1);
                 contadorCajas++;
             }else JOptionPane.showInputDialog("el numero de la caja ya existe");
             
@@ -166,8 +167,8 @@ public class InterfazBanco extends JFrame implements ActionListener{
             labelCaja2.setText("<html>Tipo de Transaccion: "+jcb.getSelectedItem().toString()+"<p><html>dinero Inicial: "+ dineroInicial);
             labelCaja2.setVisible(true);
             Caja caja2 = new Caja(numeroCajaEntero,jcb.getSelectedItem().toString(),dineroInicialEntero);
-            if(!elementoExiste(cajas, numeroCajaEntero)){
-                cajas.add(caja2);
+            if(!elementoExiste(banco.getCajas(), numeroCajaEntero)){
+                banco.getCajas().add(caja2);
                 contadorCajas++;
             }else JOptionPane.showInputDialog("el numero de la caja ya existe");
         }
@@ -175,8 +176,8 @@ public class InterfazBanco extends JFrame implements ActionListener{
             labelCaja3.setText("<html>Tipo de Transaccion: "+jcb.getSelectedItem().toString()+"<p><html>dinero Inicial: "+ dineroInicial);
             labelCaja3.setVisible(true);
             Caja caja3 = new Caja(numeroCajaEntero,jcb.getSelectedItem().toString(),dineroInicialEntero);
-            if(!elementoExiste(cajas, numeroCajaEntero)){
-                cajas.add(caja3);
+            if(!elementoExiste(banco.getCajas(), numeroCajaEntero)){
+                banco.getCajas().add(caja3);
                 contadorCajas++;
             }else JOptionPane.showInputDialog("el numero de la caja ya existe");
         }
@@ -186,8 +187,8 @@ public class InterfazBanco extends JFrame implements ActionListener{
             this.setBounds(0,0,840,535);
             this.setLocationRelativeTo(null);
             Caja caja4 = new Caja(numeroCajaEntero,jcb.getSelectedItem().toString(),dineroInicialEntero);
-            if(!elementoExiste(cajas, numeroCajaEntero)){
-                cajas.add(caja4);
+            if(!elementoExiste(banco.getCajas(), numeroCajaEntero)){
+                banco.getCajas().add(caja4);
                 contadorCajas++;
             }else JOptionPane.showInputDialog("el numero de la caja ya existe");
         }
@@ -197,8 +198,8 @@ public class InterfazBanco extends JFrame implements ActionListener{
             this.setBounds(0,0,840,535);
             this.setLocationRelativeTo(null);
             Caja caja5 = new Caja(numeroCajaEntero,jcb.getSelectedItem().toString(),dineroInicialEntero);
-            if(!elementoExiste(cajas, numeroCajaEntero)){
-                cajas.add(caja5);
+            if(!elementoExiste(banco.getCajas(), numeroCajaEntero)){
+                banco.getCajas().add(caja5);
                 contadorCajas++;
             }else JOptionPane.showInputDialog("el numero de la caja ya existe");
         }else if(numeroCaja.equals("6")){
@@ -207,14 +208,14 @@ public class InterfazBanco extends JFrame implements ActionListener{
             this.setBounds(0,0,840,535);
             this.setLocationRelativeTo(null);
             Caja caja6 = new Caja(numeroCajaEntero,jcb.getSelectedItem().toString(),dineroInicialEntero);
-            if(!elementoExiste(cajas, numeroCajaEntero)){
-                cajas.add(caja6);
+            if(!elementoExiste(banco.getCajas(), numeroCajaEntero)){
+                banco.getCajas().add(caja6);
                 contadorCajas++;
             }else JOptionPane.showInputDialog("el numero de la caja ya existe");
         }else{
             Caja cajaX = new Caja(numeroCajaEntero,jcb.getSelectedItem().toString(),dineroInicialEntero);
-            if(!elementoExiste(cajas, numeroCajaEntero)){
-                cajas.add(cajaX);
+            if(!elementoExiste(banco.getCajas(), numeroCajaEntero)){
+                banco.getCajas().add(cajaX);
                 String respuesta = JOptionPane.showInputDialog("La caja ha sido agregada Exitosamente");
                 contadorCajas++;
             }else JOptionPane.showInputDialog("el numero de la caja ya existe");
@@ -226,14 +227,14 @@ public class InterfazBanco extends JFrame implements ActionListener{
         }
         if(e.getSource() == eliminarCaja){
             
-            if(!cajas.isEmpty()){
+            if(!banco.getCajas().isEmpty()){
                 String digitenumeroEliminar = JOptionPane.showInputDialog("digite el numero de la caja que desea eliminar");
                 int numeroEliminar = Integer.parseInt(digitenumeroEliminar);
-                if(elementoExiste(cajas, numeroEliminar)){
-                for (int i = 0; i < cajas.size(); i++) {
+                if(elementoExiste(banco.getCajas(), numeroEliminar)){
+                for (int i = 0; i < banco.getCajas().size(); i++) {
      
-    if (numeroEliminar == cajas.get(i).getIdentificador()&& cajas.get(i).getCantidadClientes()==0) {
-         cajas.remove(i);
+    if (numeroEliminar == banco.getCajas().get(i).getIdentificador()&& banco.getCajas().get(i).getCantidadClientes()==0) {
+         banco.getCajas().remove(i);
          String seEncuentra = JOptionPane.showInputDialog("se elimino la caja");
          
          if(digitenumeroEliminar.equals("1")){
@@ -277,12 +278,14 @@ public class InterfazBanco extends JFrame implements ActionListener{
         
         if(e.getSource() == agregarCliente){
         String idCliente = JOptionPane.showInputDialog("Digite el id del cliente");
+        int idClienteI = Integer.parseInt(idCliente);
         JOptionPane.showMessageDialog( null, jcb, "seleccione el Tipo de transaccion", JOptionPane.QUESTION_MESSAGE);
-        //cristian es manco
         
+        banco.agregarCliente(idClienteI, jcb.getSelectedItem().toString());
+        String agregado = JOptionPane.showInputDialog("Cliente agregado");
     }
     }
-    
+
     
 
     public static void main(String args[]) {
