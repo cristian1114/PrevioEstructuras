@@ -60,11 +60,11 @@ public class Banco{
         }
         return null;
     }
-    
+    //kkkkkkkkkkkkkkkk
     public void agregarCliente(int idCliente, String tipoTransaccion){
         //Buscar las cajas con el tipo de transaccion
         LinkedList<Caja> ca = new LinkedList();
-        for (Caja c : cajas) {
+        for (Caja c : this.cajas) {
             if(c.getTipoTransaccion().equals(tipoTransaccion)){
                 ca.add(c);
             }
