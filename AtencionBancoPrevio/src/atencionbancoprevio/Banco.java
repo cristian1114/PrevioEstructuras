@@ -85,16 +85,17 @@ public class Banco{
         return true;
     }
     
-    public void despacharCliente(int idCaja, int valorTransaccion){
+    public boolean despacharCliente(int idCaja, double valorTransaccion){
         
         Caja caja;
         for (Caja c : this.cajas) {
             if (c.getIdentificador()==idCaja) {
                 c.despacharCliente();
-                break;
+                return true;
+                
             }
         }
-        
+        return false;
     }
     
     public void generarReporte(String rutaNombre, String nombreArchivo){
