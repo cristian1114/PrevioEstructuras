@@ -278,7 +278,7 @@ public class InterfazBanco extends JFrame implements ActionListener{
         if(e.getSource() == agregarCliente){
         String idCliente = JOptionPane.showInputDialog("Digite el id del cliente");
         JOptionPane.showMessageDialog( null, jcb, "seleccione el Tipo de transaccion", JOptionPane.QUESTION_MESSAGE);
-        
+        //cristian es manco
         
     }
     }
