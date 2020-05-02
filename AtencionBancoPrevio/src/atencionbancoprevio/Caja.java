@@ -37,6 +37,10 @@ public class Caja implements Comparable<Caja>{
     public void agregarCliente(int idCliente, int edad, String tipoTransaccion){
         this.clientesCola.add(new Cliente(idCliente, edad, tipoTransaccion));
     }
+    
+    public void recargarCaja(double monto){
+        this.dineroCaja+=monto;
+    }
      
     public boolean despacharCliente(double monto){
         

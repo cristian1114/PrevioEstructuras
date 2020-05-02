@@ -16,24 +16,28 @@ public class Banco{
     
     private LinkedList<Caja> cajas; 
 
-    public LinkedList<Caja> getCajas() {
-        return cajas;
-    }
-
-    public void setCajas(LinkedList<Caja> cajas) {
-        this.cajas = cajas;
-    }
 
     public Banco() {
         cajas = new LinkedList();
     }
     
     public Caja darPrimeraCaja(){
-        return null;
+        return this.cajas.getFirst();
     }
     
     public void agregarCaja(int numCaja, String tipoTransaccion, double dineroInicial){
         cajas.add(new Caja(numCaja, tipoTransaccion, dineroInicial));
+    }
+    
+    public boolean recargarCaja(int numCaja, double monto){
+        
+        for (Caja c : this.cajas) {
+            if(c.getIdentificador() == numCaja && c.getTipoTransaccion().equals("Retiro")){
+                c.recargarCaja(monto);
+                return true;
+            }
+        }
+        return false;
     }
     
     public void eliminarCaja(int numCaja){
@@ -105,6 +109,14 @@ public class Banco{
         }
         return rta;
            
+    }
+    
+    public LinkedList<Caja> getCajas() {
+        return cajas;
+    }
+
+    public void setCajas(LinkedList<Caja> cajas) {
+        this.cajas = cajas;
     }
     
 }
