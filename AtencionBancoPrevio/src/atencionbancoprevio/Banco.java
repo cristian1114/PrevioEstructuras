@@ -13,11 +13,7 @@ import java.util.LinkedList;
  * @author Cristian
  */
 public class Banco{
-    //Modificación
-//MAS MODIFICACIONES XDjhvjhjgjjhg
-    private static final String CONSIGNACION = "Consignacion";
-    private static final String RETIRO = "Retiro";
-    private static final String PAGO_SERVICIO = "Pago Servicio";
+    
     private LinkedList<Caja> cajas; 
 
     public LinkedList<Caja> getCajas() {
@@ -81,7 +77,7 @@ public class Banco{
             return false;
         //Ver cual caja tiene el menor tiempo de transaccion
         Collections.sort(ca);
-        cajas.getFirst().agregarCliente(idCliente,edad,tipoTransaccion);
+        ca.getFirst().agregarCliente(idCliente,edad,tipoTransaccion);
         return true;
     }
     
