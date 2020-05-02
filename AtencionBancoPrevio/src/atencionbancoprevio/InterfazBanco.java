@@ -18,7 +18,7 @@ import java.util.Iterator;
 import javax.swing.JOptionPane;
 import java.util.LinkedList;
 public class InterfazBanco extends JFrame implements ActionListener{
-  
+    
     LinkedList<Caja> cajas = new LinkedList();
     Banco banco = new Banco();
     private int contadorCajas = 0;
@@ -273,7 +273,14 @@ public class InterfazBanco extends JFrame implements ActionListener{
         }
         
         if(e.getSource() == buscarCliente){
-            //manco 
+            int idCliente = Integer.parseInt(JOptionPane.showInputDialog("Digite el id del cliente"));
+            Cliente cliente = banco.buscarCliente(idCliente);
+            if(cliente == null){
+                JOptionPane.showMessageDialog(this,"El cliente no se encuentra registrado");
+            }else{
+                JOptionPane.showMessageDialog(this,"se encontro el cliente con Id: " + cliente.getDocumento()+
+                " y tipo de transaccion: " + cliente.getTipoTransaccion());
+            }
         }
         
         if(e.getSource() == agregarCliente){
@@ -281,9 +288,21 @@ public class InterfazBanco extends JFrame implements ActionListener{
         int idClienteI = Integer.parseInt(idCliente);
         JOptionPane.showMessageDialog( null, jcb, "seleccione el Tipo de transaccion", JOptionPane.QUESTION_MESSAGE);
         
-        banco.agregarCliente(idClienteI, jcb.getSelectedItem().toString());
-        String agregado = JOptionPane.showInputDialog("Cliente agregado");
+           if(banco.agregarCliente(idClienteI, jcb.getSelectedItem().toString())){
+               JOptionPane.showInputDialog("se agrego el cliente");
+           }else{
+               JOptionPane.showInputDialog("NO hay cajas para ese tipo de transaccion");
+           }
+        
     }
+        
+        if(e.getSource() == despacharCliente){
+            int idCliente = Integer.parseInt(JOptionPane.showInputDialog("Digite el id del cliente"));
+            double valorTransaccion = Double.parseDouble(JOptionPane.showInputDialog("Digite el valor de la transaccion"));
+            if(banco.despacharCliente(idCliente, valorTransaccion)){
+                JOptionPane.showInputDialog("Cliente despachado");
+            }else JOptionPane.showInputDialog("No se encontro el cliente");
+        }
     }
 
     
