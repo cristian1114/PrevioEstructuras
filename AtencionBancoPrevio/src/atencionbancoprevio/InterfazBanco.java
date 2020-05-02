@@ -23,11 +23,12 @@ public class InterfazBanco extends JFrame implements ActionListener{
     Banco banco = new Banco();
     private int contadorCajas = 0;
     private JLabel labelBienvenido,labelTitle,labelCaja1,labelCaja2,labelCaja3,labelCaja4,
-                   labelCaja5,labelCaja6,labelCaja8,labelCajaX;
+                   labelCaja5,labelCaja6,labelCaja8,labelCajaX,labelVerClientes;
      
     
     private JButton agregarCaja,eliminarCaja,buscarCliente,agregarCliente,
-                    despacharCliente,generarReporte,recargar;
+                    despacharCliente,generarReporte,recargar,verClientes;
+    
     
     String[] TiposTransacciones = {
             "Consignacion",
@@ -41,6 +42,20 @@ public class InterfazBanco extends JFrame implements ActionListener{
     public InterfazBanco() {
       setLayout(null);
       jcb.setEditable(false);
+      
+      verClientes = new JButton("ver");
+      verClientes.setBounds(400,115,70,25);
+      verClientes.setVisible(true);
+      add(verClientes);
+      verClientes.addActionListener(this);
+      
+      
+      labelVerClientes = new JLabel("Ver Clientes en Cola");  
+      labelVerClientes.setBounds(250,100,500,50);
+      labelVerClientes.setFont(new Font("Andale Mono", 1, 12));
+      labelVerClientes.setForeground(new Color(0, 0, 0));
+      labelVerClientes.setVisible(true);
+      add(labelVerClientes);
       
       labelCaja1 = new JLabel();  
       labelCaja1.setBounds(250,180,500,50);
@@ -329,6 +344,16 @@ public class InterfazBanco extends JFrame implements ActionListener{
                 JOptionPane.showInputDialog("se recargo la caja");
             }else JOptionPane.showInputDialog("la caja no se puede recargar por que no es de retiro");
             
+        }
+        
+        if(e.getSource() == verClientes){
+          int numCaja = Integer.parseInt(JOptionPane.showInputDialog("Digite el numero de la caja"));
+          InterfazReporte interfas = new InterfazReporte();
+          interfas.setBounds(0,0,540,400);
+          interfas.setVisible(true);
+          interfas.setResizable(false);
+          interfas.setLocationRelativeTo(null);
+          interfas.textArea.setText(banco.verClientes(numCaja));
         }
     }
 
