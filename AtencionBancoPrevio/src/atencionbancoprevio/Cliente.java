@@ -10,11 +10,12 @@ package atencionbancoprevio;
  *
  * @author johan leon
  */
-public class Cliente {
+public class Cliente implements Comparable<Cliente>{
     
     private Cliente siguiente;
     private Cliente anterior;
     private int documento;
+    private int edad;
     private String tipoTransaccion;
     
     public void cambiarSiguiente(Cliente nSiguiente){
@@ -30,11 +31,21 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(int documento, String tipoTransaccion) {
-        
+    public Cliente(int documento, int edad, String tipoTransaccion) {
+        this.edad = edad;
         this.documento = documento;
         this.tipoTransaccion = tipoTransaccion;
     }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+    
+    
 
     public int getDocumento() {
         return documento;
@@ -72,6 +83,18 @@ public class Cliente {
     public void setTipoTransaccion(String tipoTransaccion) {
         this.tipoTransaccion = tipoTransaccion;
     }
+
+    @Override
+    public int compareTo(Cliente o) {
+
+        if(this.getEdad() > o.getEdad())
+            return -1;
+        if(this.getEdad() < o.getEdad())
+            return 1;
+        else
+            return 0;
+    }
+
     
     
     

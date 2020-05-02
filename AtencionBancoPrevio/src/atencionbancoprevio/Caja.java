@@ -36,25 +36,27 @@ public class Caja implements Comparable<Caja>{
         this.dineroCaja=0;
     }
     
-    public void agregarCliente(int idCliente, String tipoTransaccion){
-        this.clientesCola.add(new Cliente(idCliente, tipoTransaccion));
+    public void agregarCliente(int idCliente, int edad, String tipoTransaccion){
+        this.clientesCola.add(new Cliente(idCliente, edad, tipoTransaccion));
     }
      
     public void despacharCliente(){
-    
-        this.clientesAtendidos.add(this.clientesCola.pollFirst());
+        this.clientesAtendidos.add(this.clientesCola.poll());
     }
     
     
     public float getTiempoEspera(){
-        
-        if(this.tipoTransaccion.equals("Consignacion")){return this.TIEMPO_ATENCION_CONSIGNACION*this.clientesCola.size();}
-        if(this.tipoTransaccion.equals("Retiro")){return this.TIEMPO_ATENCION_RETIRO*this.clientesCola.size();}
-        if(this.tipoTransaccion.equals("Pago servicio")){return this.TIEMPO_ATENCION_PAGO_SERVICIO*this.clientesCola.size();}
-            return 0;}
+        if(this.tipoTransaccion.equals("Consignacion"))
+            return this.TIEMPO_ATENCION_CONSIGNACION*this.clientesCola.size();
+        if(this.tipoTransaccion.equals("Retiro"))
+            return this.TIEMPO_ATENCION_RETIRO*this.clientesCola.size();
+        if(this.tipoTransaccion.equals("Pago servicio"))
+            return this.TIEMPO_ATENCION_PAGO_SERVICIO*this.clientesCola.size();
+            
+        return 0;
+    }
     
     public Cliente buscarClienteCola(int documento){
-        
         for(Cliente cliente: this.clientesCola){
             if(cliente.getDocumento()==documento){return cliente;}
         }
@@ -64,7 +66,9 @@ public class Caja implements Comparable<Caja>{
     public Cliente  buscarClienteAtendidos(int documento){
         
         for(Cliente cliente: this.clientesAtendidos){
-            if(cliente.getDocumento()==documento){return cliente;}
+            if(cliente.getDocumento()==documento){
+                return cliente;
+            }
         }
     return null;
     }
