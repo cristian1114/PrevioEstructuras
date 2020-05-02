@@ -22,10 +22,12 @@ public class InterfazBanco extends JFrame implements ActionListener{
     LinkedList<Caja> cajas = new LinkedList();
     Banco banco = new Banco();
     private int contadorCajas = 0;
-    private JLabel labelBienvenido,labelTitle,labelCaja1,labelCaja2,labelCaja3,labelCaja4,labelCaja5,labelCaja6,labelCaja8,labelCajaX;
+    private JLabel labelBienvenido,labelTitle,labelCaja1,labelCaja2,labelCaja3,labelCaja4,
+                   labelCaja5,labelCaja6,labelCaja8,labelCajaX;
      
     
-    private JButton agregarCaja,eliminarCaja,buscarCliente,agregarCliente,despacharCliente,generarReporte;
+    private JButton agregarCaja,eliminarCaja,buscarCliente,agregarCliente,
+                    despacharCliente,generarReporte,recargar;
     
     String[] TiposTransacciones = {
             "Consignacion",
@@ -134,6 +136,12 @@ public class InterfazBanco extends JFrame implements ActionListener{
       add(generarReporte);
       generarReporte.addActionListener(this);
       
+      
+      recargar = new JButton("Recargar Caja");
+      recargar.setBounds(50,364,145,25);
+      recargar.setVisible(true);
+      add(recargar);
+      recargar.addActionListener(this);
       
       
     }
@@ -302,7 +310,20 @@ public class InterfazBanco extends JFrame implements ActionListener{
             double valorTransaccion = Double.parseDouble(JOptionPane.showInputDialog("Digite el valor de la transaccion"));
             if(banco.despacharCliente(numCaja, valorTransaccion)){
                 JOptionPane.showInputDialog("Cliente despachado");
-            }else JOptionPane.showInputDialog("No se encontro el cliente");
+            }else JOptionPane.showInputDialog("se debe recargar la caja");
+        }
+        
+        if(e.getSource() == generarReporte){
+          InterfazReporte interfas = new InterfazReporte();
+          interfas.setBounds(0,0,540,400);
+          interfas.setVisible(true);
+          interfas.setResizable(false);
+          interfas.setLocationRelativeTo(null);
+          interfas.textArea.setText(banco.generarReporte());
+        }
+        
+        if(e.getSource() == recargar){
+            
         }
     }
 
