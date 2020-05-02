@@ -46,14 +46,19 @@ public class InterfazReporte extends JFrame implements ActionListener
     private JMenuItem menuItemEscribir,menuItemAndaleMono,menuItemCoolsville,menuItemCalligraphic,
                       menuItemAmethyst;
      JTextArea textArea;
+     JScrollPane scroll;  
      
     private String texto;
     public InterfazReporte(){
         super("Inventario");
         
+//        textArea = new JTextArea();
+//        textArea.setBounds(0,0,600,425);
+//        add(textArea);
         textArea = new JTextArea();
-        textArea.setBounds(0,0,600,425);
-        add(textArea);
+        scroll = new JScrollPane(textArea);    
+        scroll.setBounds(0,0,525,425);                                                                    
+       this.add(scroll, BorderLayout.CENTER);
  
         undoButton.setEnabled(false);
         redoButton.setEnabled(false);
@@ -195,17 +200,17 @@ public class InterfazReporte extends JFrame implements ActionListener
     public void actionPerformed(ActionEvent e){
         if(e.getSource()==menuItem1){
             setSize(640,540);
-            textArea.setBounds(0,0,700,600);
+            scroll.setBounds(0,0,625,600);
             setLocationRelativeTo(null);
         }
         if(e.getSource()==menuItem2){
             setSize(840,640);
-            textArea.setBounds(0,0,900,800);
+            scroll.setBounds(0,0,825,800);
             setLocationRelativeTo(null);
         }
         if(e.getSource()==menuItem3){
             setSize(10240,840);
-            textArea.setBounds(0,0,1400,1000);
+            scroll.setBounds(0,0,1360,800);
             setLocationRelativeTo(null);
         }
         
