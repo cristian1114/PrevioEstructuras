@@ -60,6 +60,13 @@ public class Caja implements Comparable<Caja>{
         return true;
     }
     
+    public String verClientes(){
+        String rta = "";
+        for (Cliente c : this.clientesCola) {
+            rta+="Documento "+c.getDocumento()+"\n Edad: "+c.getEdad()+"\n\n";
+        }
+        return rta;
+    }
     
     public float getTiempoEspera(){
         if(this.tipoTransaccion.equals("Consignacion"))

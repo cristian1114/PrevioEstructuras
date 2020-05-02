@@ -57,6 +57,15 @@ public class Banco{
         return this.cajas.get(numCaja-1);
     }
     
+    public String verClientes(int numCaja){
+    
+        for (Caja c : this.cajas) {
+            if(c.getIdentificador() == numCaja)
+                return c.verClientes();
+        }
+        return "No hay personas en espera";
+    }
+    
     public Cliente buscarCliente(int idCliente){
         Cliente cliente;
         
