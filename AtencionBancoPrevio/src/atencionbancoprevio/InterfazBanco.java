@@ -298,9 +298,9 @@ public class InterfazBanco extends JFrame implements ActionListener{
     }
         
         if(e.getSource() == despacharCliente){
-            int idCliente = Integer.parseInt(JOptionPane.showInputDialog("Digite el id del cliente"));
+            int numCaja = Integer.parseInt(JOptionPane.showInputDialog("Digite el numero de la caja"));
             double valorTransaccion = Double.parseDouble(JOptionPane.showInputDialog("Digite el valor de la transaccion"));
-            if(banco.despacharCliente(idCliente, valorTransaccion)){
+            if(banco.despacharCliente(numCaja, valorTransaccion)){
                 JOptionPane.showInputDialog("Cliente despachado");
             }else JOptionPane.showInputDialog("No se encontro el cliente");
         }
