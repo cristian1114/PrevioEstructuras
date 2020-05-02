@@ -90,17 +90,25 @@ public class Banco{
         Caja caja;
         for (Caja c : this.cajas) {
             if (c.getIdentificador()==idCaja) {
-                c.despacharCliente();
-                return true;
-                
+                if(c.despacharCliente(valorTransaccion))//si la caja tiene dinero lo despacho
+                    return true;
             }
         }
         return false;
     }
     
-    public void generarReporte(String rutaNombre, String nombreArchivo){
-            //TIPO DE TRANSACCION ATENDIDA POR CAJA, MONTO INICIAL DEL DINERO DE CADA CAJA
-            //EL MONTO ACTUAL DE DINERO, NUMERO DE CLIENTES ATENDIDOS POR CADA CAJA
+    public String generarReporte(){
+         //TIPO DE TRANSACCION ATENDIDA POR CAJA, MONTO INICIAL DEL DINERO DE CADA CAJA
+         //EL MONTO ACTUAL DE DINERO, NUMERO DE CLIENTES ATENDIDOS POR CADA CAJA y NUEMRO DE CLIENTES POR ATENDER
+        String rta = "**********Reporte del Banco***********\n";
+        for (Caja caja : this.cajas) {
+            rta+=">>Id caja: "+caja.getIdentificador()+"\n  Tipo de Transaccion de caja: "+caja.getTipoTransaccion()+
+                    "\n  Monto Incial: "+caja.getDineroInicial()+"\n  Monto Actual: "+caja.getDineroCaja()+
+                    "\n  Cantidad de clientes atendidos: "+caja.getClientesAtendidos()+
+                    "\n  Clientes en cola: "+caja.getCantidadClientes()+"\n";
+        }
+        return rta;
+           
     }
     
 }

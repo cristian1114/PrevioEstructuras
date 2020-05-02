@@ -17,14 +17,12 @@ public class Caja implements Comparable<Caja>{
     private int dineroCaja; 
     private String tipoTransaccion;
     private LinkedList<Cliente> clientesCola;
-    private LinkedList<Cliente> clientesAtendidos;
+    private int clientesAtendidos;
     private final int TIEMPO_ATENCION_CONSIGNACION=7;
     private final int TIEMPO_ATENCION_RETIRO=5;
     private final int TIEMPO_ATENCION_PAGO_SERVICIO=8;
 
     public Caja() {
-        this.clientesCola=new LinkedList();
-        this.clientesAtendidos=new LinkedList();
     }
 
     public Caja(int identificador, String transaccion, double dineroInicial) {
@@ -32,7 +30,7 @@ public class Caja implements Comparable<Caja>{
         this.dineroInicial = dineroInicial;
         this.tipoTransaccion = transaccion;
         this.clientesCola=new LinkedList();
-        this.clientesAtendidos=new LinkedList();
+        this.clientesAtendidos=0;
         this.dineroCaja=0;
     }
     
@@ -40,8 +38,18 @@ public class Caja implements Comparable<Caja>{
         this.clientesCola.add(new Cliente(idCliente, edad, tipoTransaccion));
     }
      
-    public void despacharCliente(){
-        this.clientesAtendidos.add(this.clientesCola.poll());
+    public boolean despacharCliente(double monto){
+        if(this.tipoTransaccion.equals("Retiro")){
+            if(dineroCaja-monto < 0)
+                return false;
+            else
+                dineroCaja-=monto;
+        }
+        if(this.tipoTransaccion.equals("Consignacion") || this.tipoTransaccion.equals("Pago Servicio"))
+            dineroCaja+=monto;
+        this.clientesAtendidos++;
+        
+        return true;
     }
     
     
@@ -62,16 +70,16 @@ public class Caja implements Comparable<Caja>{
         }
     return null;
     }
-    
-    public Cliente  buscarClienteAtendidos(int documento){
-        
-        for(Cliente cliente: this.clientesAtendidos){
-            if(cliente.getDocumento()==documento){
-                return cliente;
-            }
-        }
-    return null;
-    }
+//    
+//    public Cliente  buscarClienteAtendidos(int documento){
+//        
+//        for(Cliente cliente: this.clientesAtendidos){
+//            if(cliente.getDocumento()==documento){
+//                return cliente;
+//            }
+//        }
+//    return null;
+//    }
     // GETTERS AND SETTERS
 
     public int getIdentificador() {
@@ -94,6 +102,16 @@ public class Caja implements Comparable<Caja>{
         return dineroCaja;
     }
 
+    public int getClientesAtendidos() {
+        return clientesAtendidos;
+    }
+
+    public void setClientesAtendidos(int clientesAtendidos) {
+        this.clientesAtendidos = clientesAtendidos;
+    }
+
+    
+    
     public void setDineroCaja(int dineroCaja) {
         this.dineroCaja = dineroCaja;
     }
@@ -117,16 +135,7 @@ public class Caja implements Comparable<Caja>{
     public void setClientesCola(LinkedList<Cliente> clientesCola) {
         this.clientesCola = clientesCola;
     }
-    
-    
-
-    public LinkedList<Cliente> getClientesAtendidos() {
-        return clientesAtendidos;
-    }
-
-    public void setClientesAtendidos(LinkedList<Cliente> clientesAtendidos) {
-        this.clientesAtendidos = clientesAtendidos;
-    }
+   
     
     @Override
     public int compareTo(Caja o) {
