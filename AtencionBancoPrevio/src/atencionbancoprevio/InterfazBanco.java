@@ -39,7 +39,7 @@ public class InterfazBanco extends JFrame implements ActionListener{
     public InterfazBanco() {
       setLayout(null);
       jcb.setEditable(false);
-     
+      
       labelCaja1 = new JLabel();  
       labelCaja1.setBounds(250,180,500,50);
       labelCaja1.setFont(new Font("Andale Mono", 1, 12));
@@ -287,8 +287,9 @@ public class InterfazBanco extends JFrame implements ActionListener{
         String idCliente = JOptionPane.showInputDialog("Digite el id del cliente");
         int idClienteI = Integer.parseInt(idCliente);
         JOptionPane.showMessageDialog( null, jcb, "seleccione el Tipo de transaccion", JOptionPane.QUESTION_MESSAGE);
-        
-           if(banco.agregarCliente(idClienteI, jcb.getSelectedItem().toString())){
+        String edadClienteS = JOptionPane.showInputDialog("Digite la edad del cliente");
+        int edadCliente = Integer.parseInt(edadClienteS);
+           if(banco.agregarCliente(idClienteI,edadCliente,jcb.getSelectedItem().toString())){
                JOptionPane.showInputDialog("se agrego el cliente");
            }else{
                JOptionPane.showInputDialog("NO hay cajas para ese tipo de transaccion");
