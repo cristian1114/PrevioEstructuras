@@ -322,7 +322,12 @@ public class InterfazBanco extends JFrame implements ActionListener{
           interfas.textArea.setText(banco.generarReporte());
         }
         
-        if(e.getSource() == recargar){
+        if(e.getSource() == recargar){//implementando el boton de recarga
+            int numCaja = Integer.parseInt(JOptionPane.showInputDialog("Digite el numero de la caja"));
+            double valorTransaccion = Double.parseDouble(JOptionPane.showInputDialog("Digite el valor de la transaccion"));
+            if(banco.recargarCaja(numCaja, valorTransaccion)){
+                JOptionPane.showInputDialog("se recargo la caja");
+            }else JOptionPane.showInputDialog("la caja no se puede recargar por que no es de retiro");
             
         }
     }
