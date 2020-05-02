@@ -14,7 +14,7 @@ public class Caja implements Comparable<Caja>{
     
     private int identificador;
     private double dineroInicial;
-    private int dineroCaja; 
+    private double dineroCaja; 
     private String tipoTransaccion;
     private LinkedList<Cliente> clientesCola;
     private int clientesAtendidos;
@@ -31,23 +31,31 @@ public class Caja implements Comparable<Caja>{
         this.tipoTransaccion = transaccion;
         this.clientesCola=new LinkedList();
         this.clientesAtendidos=0;
-        this.dineroCaja=0;
+        this.dineroCaja=dineroInicial;
     }
     
     public void agregarCliente(int idCliente, int edad, String tipoTransaccion){
         this.clientesCola.add(new Cliente(idCliente, edad, tipoTransaccion));
     }
+    
+    public void recargarCaja(double monto){
+        this.dineroCaja+=monto;
+    }
      
     public boolean despacharCliente(double monto){
+        
+        if(this.getClientesCola().isEmpty())
+            return false;
         if(this.tipoTransaccion.equals("Retiro")){
             if(dineroCaja-monto < 0)
                 return false;
             else
-                dineroCaja-=monto;
+                this.dineroCaja-=monto;
         }
         if(this.tipoTransaccion.equals("Consignacion") || this.tipoTransaccion.equals("Pago Servicio"))
             dineroCaja+=monto;
         this.clientesAtendidos++;
+        this.clientesCola.poll();
         
         return true;
     }
@@ -66,7 +74,9 @@ public class Caja implements Comparable<Caja>{
     
     public Cliente buscarClienteCola(int documento){
         for(Cliente cliente: this.clientesCola){
-            if(cliente.getDocumento()==documento){return cliente;}
+            if(cliente.getDocumento()==documento){
+                return cliente;
+            }
         }
     return null;
     }
@@ -98,7 +108,7 @@ public class Caja implements Comparable<Caja>{
         this.dineroInicial = dineroInicial;
     }
 
-    public int getDineroCaja() {
+    public double getDineroCaja() {
         return dineroCaja;
     }
 

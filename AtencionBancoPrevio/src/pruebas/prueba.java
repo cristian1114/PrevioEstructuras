@@ -5,6 +5,7 @@
  */
 package pruebas;
 
+import atencionbancoprevio.Banco;
 import java.util.LinkedList;
 import atencionbancoprevio.Caja;
 import java.util.Collections;
@@ -16,24 +17,36 @@ public class prueba {
     
     public static void main(String[] args) {
         
-        LinkedList<Caja> cajas = new LinkedList();
+        Banco b = new Banco();
         
-        cajas.add(new Caja(2,"retiro",200000));
-        cajas.add(new Caja(3,"pago",200000));
-        cajas.add(new Caja(4,"retiro",200000));
-        cajas.add(new Caja(2,"retiro",200000));
-
-        for (Caja c : cajas) {
-            System.out.println("Tiempo "+c.getTiempoEspera());
-        }
+        b.agregarCaja(2,"Retiro",200000);
+        b.agregarCaja(3,"Pago Servicio",200300);
+        b.agregarCaja(4,"Retiro",200000);
+        b.agregarCaja(1,"Retiro",200000);
         
-        Collections.sort(cajas);
-        System.out.println("despues \n");
-        for (Caja c : cajas) {
-            System.out.println("Tiempo "+c.getTiempoEspera());
-        }
+        b.agregarCliente(1, 23, "Retiro");
+        b.agregarCliente(3, 25, "Retiro");
+        b.agregarCliente(4, 26, "Retiro");
+        b.agregarCliente(2, 45, "Pago Servicio");
         
-        System.out.println("el menor es "+cajas.getFirst().getTiempoEspera());
+        b.despacharCliente(4, 200000);
+        
+        System.out.println(b.generarReporte());
+        
+        
+        
+//
+//        for (Caja c : cajas) {
+//            System.out.println("Tiempo "+c.getTiempoEspera());
+//        }
+//        
+//        Collections.sort(cajas);
+//        System.out.println("despues \n");
+//        for (Caja c : cajas) {
+//            System.out.println("Tiempo "+c.getTiempoEspera());
+//        }
+//        
+//        System.out.println("el menor es "+cajas.getFirst().getTiempoEspera());
         
     }
     

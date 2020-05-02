@@ -13,31 +13,31 @@ import java.util.LinkedList;
  * @author Cristian
  */
 public class Banco{
-    //Modificación
-//MAS MODIFICACIONES XDjhvjhjgjjhg
-    private static final String CONSIGNACION = "Consignacion";
-    private static final String RETIRO = "Retiro";
-    private static final String PAGO_SERVICIO = "Pago Servicio";
+    
     private LinkedList<Caja> cajas; 
 
-    public LinkedList<Caja> getCajas() {
-        return cajas;
-    }
-
-    public void setCajas(LinkedList<Caja> cajas) {
-        this.cajas = cajas;
-    }
 
     public Banco() {
         cajas = new LinkedList();
     }
     
     public Caja darPrimeraCaja(){
-        return null;
+        return this.cajas.getFirst();
     }
     
     public void agregarCaja(int numCaja, String tipoTransaccion, double dineroInicial){
         cajas.add(new Caja(numCaja, tipoTransaccion, dineroInicial));
+    }
+    
+    public boolean recargarCaja(int numCaja, double monto){
+        
+        for (Caja c : this.cajas) {
+            if(c.getIdentificador() == numCaja && c.getTipoTransaccion().equals("Retiro")){
+                c.recargarCaja(monto);
+                return true;
+            }
+        }
+        return false;
     }
     
     public void eliminarCaja(int numCaja){
@@ -81,7 +81,7 @@ public class Banco{
             return false;
         //Ver cual caja tiene el menor tiempo de transaccion
         Collections.sort(ca);
-        cajas.getFirst().agregarCliente(idCliente,edad,tipoTransaccion);
+        ca.getFirst().agregarCliente(idCliente,edad,tipoTransaccion);
         return true;
     }
     
@@ -109,6 +109,14 @@ public class Banco{
         }
         return rta;
            
+    }
+    
+    public LinkedList<Caja> getCajas() {
+        return cajas;
+    }
+
+    public void setCajas(LinkedList<Caja> cajas) {
+        this.cajas = cajas;
     }
     
 }
