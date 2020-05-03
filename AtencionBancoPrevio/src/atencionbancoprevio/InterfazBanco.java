@@ -207,7 +207,7 @@ public class InterfazBanco extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         
         
-        if(e.getSource() == agregarCaja){
+        if(e.getSource() == agregarCaja){// agregando caja
            
             String numeroCaja = JOptionPane.showInputDialog("Escribe el numero de la caja");
             String dineroInicial = JOptionPane.showInputDialog("Escribe el Dinero Inicial de la caja");
