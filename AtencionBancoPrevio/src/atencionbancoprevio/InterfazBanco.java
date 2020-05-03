@@ -37,7 +37,7 @@ public class InterfazBanco extends JFrame implements ActionListener{
         };
     
     JComboBox jcb = new JComboBox(TiposTransacciones);
-    //coment
+    //comentario
                
     public InterfazBanco() {
       setLayout(null);
