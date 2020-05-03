@@ -22,8 +22,8 @@ public class InterfazBanco extends JFrame implements ActionListener{
     LinkedList<Caja> cajas = new LinkedList();
     Banco banco = new Banco();
     private int contadorCajas = 0;
-    private JLabel labelBienvenido,labelTitle,labelCaja1,labelCaja2,labelCaja3,labelCaja4,
-                   labelCaja5,labelCaja6,labelCaja8,labelCajaX;
+    private JLabel labelBienvenido,labelTitle,labelCaja1,labelCaja1a,labelCaja2,labelCaja2a,labelCaja3,labelCaja3a,labelCaja4,labelCaja4a,
+                   labelCaja5,labelCaja5a,labelCaja6,labelCaja6a,labelCaja8,labelCaja8a,labelCajaX;
      
     
     private JButton agregarCaja,eliminarCaja,buscarCliente,agregarCliente,
@@ -43,45 +43,87 @@ public class InterfazBanco extends JFrame implements ActionListener{
       jcb.setEditable(false);
       
       labelCaja1 = new JLabel();  
-      labelCaja1.setBounds(250,180,500,50);
+      labelCaja1.setBounds(270,180,100,50);
+      labelCaja1.setIcon(new javax.swing.ImageIcon(getClass().getResource("../imagenes/fac.png")));
       labelCaja1.setFont(new Font("Andale Mono", 1, 12));
-      labelCaja1.setForeground(new Color(0, 0, 0));
+      labelCaja1.setForeground(new Color(0,0,0));
       labelCaja1.setVisible(false);
+      labelCaja1a = new JLabel();
+      labelCaja1a.setFont(new Font("Andale Mono", 1, 12));
+      labelCaja1a.setForeground(new Color(0,0,0));
+      labelCaja1a.setBounds(250,220,150,80);
+      labelCaja1a.setVisible(false);
+      add(labelCaja1a);
       add(labelCaja1);
       
       labelCaja2 = new JLabel();  
-      labelCaja2.setBounds(250,280,500,50);
+      labelCaja2.setBounds(270,300,500,50);
+      labelCaja2.setIcon(new javax.swing.ImageIcon(getClass().getResource("../imagenes/fac.png")));
       labelCaja2.setFont(new Font("Andale Mono", 1, 12));
       labelCaja2.setForeground(new Color(0, 0, 0));
       labelCaja2.setVisible(false);
+      labelCaja2a = new JLabel();
+      labelCaja2a.setFont(new Font("Andale Mono", 1, 12));
+      labelCaja2a.setForeground(new Color(0, 0, 0));
+      labelCaja2a.setBounds(250,330,150,80);
+      labelCaja2a.setVisible(false);
+      add(labelCaja2a);
       add(labelCaja2);
       
       labelCaja3 = new JLabel();  
-      labelCaja3.setBounds(250,380,500,50);
+      labelCaja3.setBounds(270,410,500,50);
+      labelCaja3.setIcon(new javax.swing.ImageIcon(getClass().getResource("../imagenes/fac.png")));
       labelCaja3.setFont(new Font("Andale Mono", 1, 12));
       labelCaja3.setForeground(new Color(0, 0, 0));
       labelCaja3.setVisible(false);
+      labelCaja3a = new JLabel();
+      labelCaja3a.setFont(new Font("Andale Mono", 1, 12));
+      labelCaja3a.setForeground(new Color(0, 0, 0));
+      labelCaja3a.setBounds(250,440,150,80);
+      labelCaja3a.setVisible(false);
+      add(labelCaja3a);
       add(labelCaja3);
       
       labelCaja4 = new JLabel();  
-      labelCaja4.setBounds(500,180,500,50);
+      labelCaja4.setBounds(500,185,500,50);
+      labelCaja4.setIcon(new javax.swing.ImageIcon(getClass().getResource("../imagenes/fac.png")));
       labelCaja4.setFont(new Font("Andale Mono", 1, 12));
       labelCaja4.setForeground(new Color(0, 0, 0));
       labelCaja4.setVisible(false);
+      labelCaja4a = new JLabel();
+      labelCaja4a.setFont(new Font("Andale Mono", 1, 12));
+      labelCaja4a.setForeground(new Color(0, 0, 0));
+      labelCaja4a.setBounds(480,235,500,50);
+      labelCaja4a.setVisible(false);
+      add(labelCaja4a);
       add(labelCaja4);
       
       labelCaja5 = new JLabel();  
-      labelCaja5.setBounds(500,280,500,50);
+      labelCaja5.setBounds(500,305,500,50);
+      labelCaja5.setIcon(new javax.swing.ImageIcon(getClass().getResource("../imagenes/fac.png")));
       labelCaja5.setFont(new Font("Andale Mono", 1, 12));
       labelCaja5.setForeground(new Color(0, 0, 0));
       labelCaja5.setVisible(false);
+      labelCaja5a = new JLabel();
+      labelCaja5a.setFont(new Font("Andale Mono", 1, 12));
+      labelCaja5a.setForeground(new Color(0, 0, 0));
+      labelCaja5a.setBounds(480,350,500,50);
+      labelCaja5a.setVisible(false);
+      add(labelCaja5a);
       add(labelCaja5);
       
       labelCaja6 = new JLabel();  
-      labelCaja6.setBounds(500,380,500,50);
+      labelCaja6.setBounds(500,415,500,50);
+      labelCaja6.setIcon(new javax.swing.ImageIcon(getClass().getResource("../imagenes/fac.png")));
       labelCaja6.setFont(new Font("Andale Mono", 1, 12));
       labelCaja6.setForeground(new Color(0, 0, 0));
       labelCaja6.setVisible(false);
+      labelCaja6a = new JLabel();
+      labelCaja6a.setFont(new Font("Andale Mono", 1, 12));
+      labelCaja6a.setForeground(new Color(0, 0, 0));
+      labelCaja6a.setBounds(480,457,500,50);
+      labelCaja6a.setVisible(false);
+      add(labelCaja6a);
       add(labelCaja6);
       
       labelBienvenido = new JLabel("Opciones ");  
@@ -160,9 +202,11 @@ public class InterfazBanco extends JFrame implements ActionListener{
             int numeroCajaEntero = Integer.parseInt(numeroCaja);
             
             if(numeroCaja.equals("1")){
-            labelCaja1.setText("<html>Tipo de Transaccion: "+jcb.getSelectedItem().toString()+"<p><html>dinero Inicial: "+ dineroInicial);
-            labelCaja1.setVisible(true);
+                labelCaja1.setVisible(true);
+            labelCaja1a.setText("<html>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Id :"+numeroCaja+"<p><html> "+jcb.getSelectedItem().toString()+"<p><html> &nbsp&nbsp&nbsp&nbsp $: "+ dineroInicial);
             
+            labelCaja1a.setVisible(true);
+//            
             Caja caja1 = new Caja(numeroCajaEntero,jcb.getSelectedItem().toString(),dineroInicialEntero);
             if(!elementoExiste(banco.getCajas(), numeroCajaEntero)){
                 banco.getCajas().add(caja1);
@@ -172,8 +216,9 @@ public class InterfazBanco extends JFrame implements ActionListener{
             }
         
             else if(numeroCaja.equals("2")){
-            labelCaja2.setText("<html>Tipo de Transaccion: "+jcb.getSelectedItem().toString()+"<p><html>dinero Inicial: "+ dineroInicial);
+            labelCaja2a.setText("<html>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Id :"+numeroCaja+"<p><html> "+jcb.getSelectedItem().toString()+"<p><html> &nbsp&nbsp&nbsp&nbsp $: "+ dineroInicial);
             labelCaja2.setVisible(true);
+            labelCaja2a.setVisible(true);
             Caja caja2 = new Caja(numeroCajaEntero,jcb.getSelectedItem().toString(),dineroInicialEntero);
             if(!elementoExiste(banco.getCajas(), numeroCajaEntero)){
                 banco.getCajas().add(caja2);
@@ -181,8 +226,9 @@ public class InterfazBanco extends JFrame implements ActionListener{
             }else JOptionPane.showInputDialog("el numero de la caja ya existe");
         }
         else if(numeroCaja.equals("3")){
-            labelCaja3.setText("<html>Tipo de Transaccion: "+jcb.getSelectedItem().toString()+"<p><html>dinero Inicial: "+ dineroInicial);
+            labelCaja3a.setText("<html>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Id :"+numeroCaja+"<p><html> "+jcb.getSelectedItem().toString()+"<p><html> &nbsp&nbsp&nbsp&nbsp $: "+ dineroInicial);
             labelCaja3.setVisible(true);
+            labelCaja3a.setVisible(true);
             Caja caja3 = new Caja(numeroCajaEntero,jcb.getSelectedItem().toString(),dineroInicialEntero);
             if(!elementoExiste(banco.getCajas(), numeroCajaEntero)){
                 banco.getCajas().add(caja3);
@@ -190,9 +236,10 @@ public class InterfazBanco extends JFrame implements ActionListener{
             }else JOptionPane.showInputDialog("el numero de la caja ya existe");
         }
         else if(numeroCaja.equals("4")){
-            labelCaja4.setText("<html>Tipo de Transaccion: "+jcb.getSelectedItem().toString()+"<p><html>dinero Inicial: "+ dineroInicial);
+            labelCaja4a.setText("<html>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Id :"+numeroCaja+"<p><html> "+jcb.getSelectedItem().toString()+"<p><html> &nbsp&nbsp&nbsp&nbsp $: "+ dineroInicial);
             labelCaja4.setVisible(true);
-            this.setBounds(0,0,840,535);
+            labelCaja4a.setVisible(true);
+            this.setBounds(0,0,600,540);
             this.setLocationRelativeTo(null);
             Caja caja4 = new Caja(numeroCajaEntero,jcb.getSelectedItem().toString(),dineroInicialEntero);
             if(!elementoExiste(banco.getCajas(), numeroCajaEntero)){
@@ -201,9 +248,10 @@ public class InterfazBanco extends JFrame implements ActionListener{
             }else JOptionPane.showInputDialog("el numero de la caja ya existe");
         }
         else if(numeroCaja.equals("5")){
-            labelCaja5.setText("<html>Tipo de Transaccion: "+jcb.getSelectedItem().toString()+"<p><html>dinero Inicial: "+ dineroInicial);
+            labelCaja5a.setText("<html>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Id :"+numeroCaja+"<p><html> "+jcb.getSelectedItem().toString()+"<p><html> &nbsp&nbsp&nbsp&nbsp $: "+ dineroInicial);
             labelCaja5.setVisible(true);
-            this.setBounds(0,0,840,535);
+            labelCaja5a.setVisible(true);
+            this.setBounds(0,0,600,540);
             this.setLocationRelativeTo(null);
             Caja caja5 = new Caja(numeroCajaEntero,jcb.getSelectedItem().toString(),dineroInicialEntero);
             if(!elementoExiste(banco.getCajas(), numeroCajaEntero)){
@@ -211,9 +259,10 @@ public class InterfazBanco extends JFrame implements ActionListener{
                 contadorCajas++;
             }else JOptionPane.showInputDialog("el numero de la caja ya existe");
         }else if(numeroCaja.equals("6")){
-            labelCaja6.setText("<html>Tipo de Transaccion: "+jcb.getSelectedItem().toString()+"<p><html>dinero Inicial: "+ dineroInicial);
+            labelCaja6a.setText("<html>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Id :"+numeroCaja+"<p><html> "+jcb.getSelectedItem().toString()+"<p><html> &nbsp&nbsp&nbsp&nbsp $: "+ dineroInicial);
             labelCaja6.setVisible(true);
-            this.setBounds(0,0,840,535);
+            labelCaja6a.setVisible(true);
+            this.setBounds(0,0,600,540);
             this.setLocationRelativeTo(null);
             Caja caja6 = new Caja(numeroCajaEntero,jcb.getSelectedItem().toString(),dineroInicialEntero);
             if(!elementoExiste(banco.getCajas(), numeroCajaEntero)){
@@ -336,7 +385,7 @@ public class InterfazBanco extends JFrame implements ActionListener{
 
     public static void main(String args[]) {
        InterfazBanco ventanaPrincipal = new InterfazBanco();
-       ventanaPrincipal.setBounds(0,0,640,535);
+       ventanaPrincipal.setBounds(0,0,640,545);
        ventanaPrincipal.setVisible(true);
        ventanaPrincipal.setResizable(false);
        ventanaPrincipal.setLocationRelativeTo(null);
