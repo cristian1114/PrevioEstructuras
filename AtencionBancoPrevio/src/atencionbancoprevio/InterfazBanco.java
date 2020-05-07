@@ -226,7 +226,7 @@ public class InterfazBanco extends JFrame implements ActionListener{
             if(!elementoExiste(banco.getCajas(), numeroCajaEntero)){
                 banco.getCajas().add(caja1);
                 contadorCajas++;
-            }else JOptionPane.showInputDialog("el numero de la caja ya existe");
+            }else JOptionPane.showMessageDialog(this,"el numero de la caja ya existe");
             
             }
         
@@ -238,7 +238,7 @@ public class InterfazBanco extends JFrame implements ActionListener{
             if(!elementoExiste(banco.getCajas(), numeroCajaEntero)){
                 banco.getCajas().add(caja2);
                 contadorCajas++;
-            }else JOptionPane.showInputDialog("el numero de la caja ya existe");
+            }else JOptionPane.showMessageDialog(this,"el numero de la caja ya existe");
         }
         else if(numeroCaja.equals("3")){
             labelCaja3a.setText("<html>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Id :"+numeroCaja+"<p><html> "+jcb.getSelectedItem().toString()+"<p><html> &nbsp&nbsp&nbsp&nbsp $: "+ dineroInicial);
@@ -248,7 +248,7 @@ public class InterfazBanco extends JFrame implements ActionListener{
             if(!elementoExiste(banco.getCajas(), numeroCajaEntero)){
                 banco.getCajas().add(caja3);
                 contadorCajas++;
-            }else JOptionPane.showInputDialog("el numero de la caja ya existe");
+            }else JOptionPane.showMessageDialog(this,"el numero de la caja ya existe");
         }
         else if(numeroCaja.equals("4")){
             labelCaja4a.setText("<html>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Id :"+numeroCaja+"<p><html> "+jcb.getSelectedItem().toString()+"<p><html> &nbsp&nbsp&nbsp&nbsp $: "+ dineroInicial);
@@ -260,7 +260,7 @@ public class InterfazBanco extends JFrame implements ActionListener{
             if(!elementoExiste(banco.getCajas(), numeroCajaEntero)){
                 banco.getCajas().add(caja4);
                 contadorCajas++;
-            }else JOptionPane.showInputDialog("el numero de la caja ya existe");
+            }else JOptionPane.showMessageDialog(this,"el numero de la caja ya existe");
         }
         else if(numeroCaja.equals("5")){
             labelCaja5a.setText("<html>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Id :"+numeroCaja+"<p><html> "+jcb.getSelectedItem().toString()+"<p><html> &nbsp&nbsp&nbsp&nbsp $: "+ dineroInicial);
@@ -272,7 +272,7 @@ public class InterfazBanco extends JFrame implements ActionListener{
             if(!elementoExiste(banco.getCajas(), numeroCajaEntero)){
                 banco.getCajas().add(caja5);
                 contadorCajas++;
-            }else JOptionPane.showInputDialog("el numero de la caja ya existe");
+            }else JOptionPane.showMessageDialog(this,"el numero de la caja ya existe");
         }else if(numeroCaja.equals("6")){
             labelCaja6a.setText("<html>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Id :"+numeroCaja+"<p><html> "+jcb.getSelectedItem().toString()+"<p><html> &nbsp&nbsp&nbsp&nbsp $: "+ dineroInicial);
             labelCaja6.setVisible(true);
@@ -283,14 +283,14 @@ public class InterfazBanco extends JFrame implements ActionListener{
             if(!elementoExiste(banco.getCajas(), numeroCajaEntero)){
                 banco.getCajas().add(caja6);
                 contadorCajas++;
-            }else JOptionPane.showInputDialog("el numero de la caja ya existe");
-        }else{
+            }else JOptionPane.showMessageDialog(this,"el numero de la caja ya existe");
+          }else{
             Caja cajaX = new Caja(numeroCajaEntero,jcb.getSelectedItem().toString(),dineroInicialEntero);
             if(!elementoExiste(banco.getCajas(), numeroCajaEntero)){
                 banco.getCajas().add(cajaX);
                 String respuesta = JOptionPane.showInputDialog("La caja ha sido agregada Exitosamente");
                 contadorCajas++;
-            }else JOptionPane.showInputDialog("el numero de la caja ya existe");
+            }else JOptionPane.showMessageDialog(this,"el numero de la caja ya existe");
             
         }
             
@@ -303,37 +303,46 @@ public class InterfazBanco extends JFrame implements ActionListener{
                 String digitenumeroEliminar = JOptionPane.showInputDialog("digite el numero de la caja que desea eliminar");
                 int numeroEliminar = Integer.parseInt(digitenumeroEliminar);
                 if(elementoExiste(banco.getCajas(), numeroEliminar)){
+                    
+                    
                 for (int i = 0; i < banco.getCajas().size(); i++) {
      
-    if (numeroEliminar == banco.getCajas().get(i).getIdentificador()&& banco.getCajas().get(i).getCantidadClientes()==0) {
+       if (numeroEliminar == banco.getCajas().get(i).getIdentificador()&& banco.getCajas().get(i).getCantidadClientes()==0) {
          banco.getCajas().remove(i);
-         String seEncuentra = JOptionPane.showInputDialog("se elimino la caja");
+         JOptionPane.showMessageDialog(this,"se elimino la caja");
          
          if(digitenumeroEliminar.equals("1")){
                 labelCaja1.setVisible(false);
+                labelCaja1a.setVisible(false);
             }
          else if(digitenumeroEliminar.equals("2")){
              labelCaja2.setVisible(false);
+             labelCaja2a.setVisible(false);
          }
          else if(digitenumeroEliminar.equals("3")){
              labelCaja3.setVisible(false);
+             labelCaja3a.setVisible(false);
          }
          else if(digitenumeroEliminar.equals("4")){
              labelCaja4.setVisible(false);
+             labelCaja4a.setVisible(false);
          }
          else if(digitenumeroEliminar.equals("5")){
              labelCaja5.setVisible(false);
+             labelCaja5a.setVisible(false);
          }
          else if(digitenumeroEliminar.equals("6")){
              labelCaja6.setVisible(false);
+             labelCaja6a.setVisible(false);
          }
          
-    }
+    }else
+        JOptionPane.showMessageDialog(this,"Aun hay clientes en cola en dicha caja");
     
     
 }
                 }else{
-                    String noExiste = JOptionPane.showInputDialog("el numero de la caja no existe");
+                    JOptionPane.showMessageDialog(this,"el numero de la caja no existe");
                 }
                 
             }
@@ -362,9 +371,9 @@ public class InterfazBanco extends JFrame implements ActionListener{
         String edadClienteS = JOptionPane.showInputDialog("Digite la edad del cliente");
         int edadCliente = Integer.parseInt(edadClienteS);
            if(banco.agregarCliente(idClienteI,edadCliente,jcb.getSelectedItem().toString())){
-               JOptionPane.showInputDialog("se agrego el cliente");
+               JOptionPane.showMessageDialog(this,"se agrego el cliente");
            }else{
-               JOptionPane.showInputDialog("NO hay cajas para ese tipo de transaccion");
+               JOptionPane.showMessageDialog(this,"NO hay cajas para ese tipo de transaccion");
            }
         
     }
@@ -373,8 +382,8 @@ public class InterfazBanco extends JFrame implements ActionListener{
             int numCaja = Integer.parseInt(JOptionPane.showInputDialog("Digite el numero de la caja"));
             double valorTransaccion = Double.parseDouble(JOptionPane.showInputDialog("Digite el valor de la transaccion"));
             if(banco.despacharCliente(numCaja, valorTransaccion)){
-                JOptionPane.showInputDialog("Cliente despachado");
-            }else JOptionPane.showInputDialog("se debe recargar la caja");
+                JOptionPane.showMessageDialog(this,"Cliente despachado");
+            }else JOptionPane.showMessageDialog(this,"se debe recargar la caja");
         }
         
         if(e.getSource() == generarReporte){
@@ -390,8 +399,8 @@ public class InterfazBanco extends JFrame implements ActionListener{
             int numCaja = Integer.parseInt(JOptionPane.showInputDialog("Digite el numero de la caja"));
             double valorTransaccion = Double.parseDouble(JOptionPane.showInputDialog("Digite el valor de la transaccion"));
             if(banco.recargarCaja(numCaja, valorTransaccion)){
-                JOptionPane.showInputDialog("se recargo la caja");
-            }else JOptionPane.showInputDialog("la caja no se puede recargar por que no es de retiro");
+                JOptionPane.showMessageDialog(this,"se recargo la caja");
+            }else JOptionPane.showMessageDialog(this,"la caja no se puede recargar por que no es de retiro");
             
         }
         

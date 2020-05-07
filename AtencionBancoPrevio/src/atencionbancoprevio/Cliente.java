@@ -87,10 +87,10 @@ public class Cliente implements Comparable<Cliente>{
     @Override
     public int compareTo(Cliente o) {
 
-        if(o.getEdad() < 60)
-            return -1;
-        if(o.getEdad() >= 60)
+        if(o.getEdad() > getEdad() || o.getEdad() >= 60)
             return 1;
+        else if(o.getEdad() < getEdad() || o.getEdad() < 60)
+            return -1;
         else
             return 0;
     }
