@@ -206,8 +206,8 @@ public class InterfazBanco extends JFrame implements ActionListener{
 
     public void actionPerformed(ActionEvent e) {
         
-        
-        if(e.getSource() == agregarCaja){// agregando caja
+       
+        if(e.getSource() == agregarCaja){
            
             String numeroCaja = JOptionPane.showInputDialog("Escribe el numero de la caja");
             String dineroInicial = JOptionPane.showInputDialog("Escribe el Dinero Inicial de la caja");
@@ -414,6 +414,7 @@ public class InterfazBanco extends JFrame implements ActionListener{
        ventanaPrincipal.setVisible(true);
        ventanaPrincipal.setResizable(false);
        ventanaPrincipal.setLocationRelativeTo(null);
+       ventanaPrincipal.getContentPane().setBackground(Color.white);
    } 
     
     public boolean elementoExiste(LinkedList<Caja> cajas, int numeroBuscado){
