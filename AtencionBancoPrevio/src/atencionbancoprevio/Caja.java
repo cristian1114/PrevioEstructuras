@@ -5,6 +5,7 @@
  */
 package atencionbancoprevio;
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 
 /**
  *
@@ -16,7 +17,7 @@ public class Caja implements Comparable<Caja>{
     private double dineroInicial;
     private double dineroCaja; 
     private String tipoTransaccion;
-    private LinkedList<Cliente> clientesCola;
+    private PriorityQueue<Cliente> clientesCola;
     private int clientesAtendidos;
     private final int TIEMPO_ATENCION_CONSIGNACION=7;
     private final int TIEMPO_ATENCION_RETIRO=5;
@@ -29,7 +30,7 @@ public class Caja implements Comparable<Caja>{
         this.identificador = identificador;
         this.dineroInicial = dineroInicial;
         this.tipoTransaccion = transaccion;
-        this.clientesCola=new LinkedList();
+        this.clientesCola=new PriorityQueue();
         this.clientesAtendidos=0;
         this.dineroCaja=dineroInicial;
     }
@@ -62,7 +63,7 @@ public class Caja implements Comparable<Caja>{
     
     public String verClientes(){
         String rta = "";
-        for (Cliente c : this.clientesCola) {
+        for(Cliente c : this.clientesCola){
             rta+="Documento "+c.getDocumento()+"\n Edad: "+c.getEdad()+"\n\n";
         }
         return rta;
@@ -145,11 +146,11 @@ public class Caja implements Comparable<Caja>{
         return this.clientesCola.size();
     }
 
-    public LinkedList<Cliente> getClientesCola() {
+    public PriorityQueue<Cliente> getClientesCola() {
         return clientesCola;
     }
 
-    public void setClientesCola(LinkedList<Cliente> clientesCola) {
+    public void setClientesCola(PriorityQueue<Cliente> clientesCola) {
         this.clientesCola = clientesCola;
     }
    
