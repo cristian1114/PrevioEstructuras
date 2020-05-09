@@ -414,7 +414,7 @@ public class InterfazBanco extends JFrame implements ActionListener{
        ventanaPrincipal.setVisible(true);
        ventanaPrincipal.setResizable(false);
        ventanaPrincipal.setLocationRelativeTo(null);
-       ventanaPrincipal.getContentPane().setBackground(Color.white);
+       ventanaPrincipal.getContentPane().setBackground(Color.white);//cambiando de color la interfaz
    } 
     
     public boolean elementoExiste(LinkedList<Caja> cajas, int numeroBuscado){
