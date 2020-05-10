@@ -45,7 +45,7 @@ public class InterfazReporte extends JFrame implements ActionListener
     private JMenuItem menuItemColor1,menuItemColor2,menuItemColor3;
     private JMenuItem menuItemEscribir,menuItemAndaleMono,menuItemCoolsville,menuItemCalligraphic,
                       menuItemAmethyst;
-     JTextArea textArea;
+    public JTextArea textArea;
      JScrollPane scroll;  
      
     private String texto;

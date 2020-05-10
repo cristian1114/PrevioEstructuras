@@ -6,7 +6,9 @@
 package Vista;
 
 import atencionbancoprevio.Banco;
+import atencionbancoprevio.Caja;
 import atencionbancoprevio.Cliente;
+import atencionbancoprevio.InterfazReporte;
 import javafx.scene.paint.Color;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -120,26 +122,26 @@ public class Intefaz extends javax.swing.JFrame {
         botonAgregarCliente = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        textIddespachar = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
+        textValorTransDespachar = new javax.swing.JTextField();
+        despacharBoton = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        textIdRecargarCaja = new javax.swing.JTextField();
+        textValorRecargar = new javax.swing.JTextField();
+        recargarBoton = new javax.swing.JButton();
+        generarReporteBoton = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
+        labelCaja = new javax.swing.JLabel();
+        labelSiguienteCliente = new javax.swing.JLabel();
         jPanel18 = new javax.swing.JPanel();
         jLabel27 = new javax.swing.JLabel();
         textVercola = new javax.swing.JTextField();
-        jButton7 = new javax.swing.JButton();
+        botonVerCola = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -520,10 +522,21 @@ public class Intefaz extends javax.swing.JFrame {
                 textIdentificadorAgregarCajaActionPerformed(evt);
             }
         });
+        textIdentificadorAgregarCaja.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textIdentificadorAgregarCajaKeyTyped(evt);
+            }
+        });
 
         jLabel3.setText("Identificador");
 
         jLabel4.setText("Dinero Inicial");
+
+        textDineroAgragarCaja.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textDineroAgragarCajaKeyTyped(evt);
+            }
+        });
 
         jLabel5.setText("Tipo de Trasaccion");
 
@@ -581,6 +594,12 @@ public class Intefaz extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         jLabel6.setText("Identificador");
 
+        textEliminarCaja.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textEliminarCajaKeyTyped(evt);
+            }
+        });
+
         Eliminar.setText("Eliminiar");
         Eliminar.setToolTipText("");
         Eliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -616,6 +635,12 @@ public class Intefaz extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         jLabel7.setText("Documento");
+
+        textBuscarCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textBuscarClienteKeyTyped(evt);
+            }
+        });
 
         buscarCliente.setText("Buscar");
         buscarCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -654,6 +679,18 @@ public class Intefaz extends javax.swing.JFrame {
         jLabel9.setText("Tipo de Transaccion a realizar");
 
         jLabel10.setText("Edad");
+
+        textAgregarClienteDoc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textAgregarClienteDocKeyTyped(evt);
+            }
+        });
+
+        textEdadAgregarCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textEdadAgregarClienteKeyTyped(evt);
+            }
+        });
 
         botonAgregarCliente.setText("Añadir a Cola");
         botonAgregarCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -706,9 +743,26 @@ public class Intefaz extends javax.swing.JFrame {
 
         jLabel11.setText("ID Caja");
 
+        textIddespachar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textIddespacharKeyTyped(evt);
+            }
+        });
+
         jLabel12.setText("Valor Transaccion");
 
-        jButton4.setText("Despachar");
+        textValorTransDespachar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textValorTransDespacharKeyTyped(evt);
+            }
+        });
+
+        despacharBoton.setText("Despachar");
+        despacharBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                despacharBotonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -721,27 +775,26 @@ public class Intefaz extends javax.swing.JFrame {
                     .addComponent(jLabel12))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField7)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textIddespachar)
+                    .addComponent(textValorTransDespachar, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                .addComponent(jButton4))
+                .addComponent(despacharBoton))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton4)
+                .addComponent(despacharBoton)
                 .addGap(31, 31, 31))
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel12)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jLabel11)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(textIddespachar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel12))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(textValorTransDespachar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -752,7 +805,24 @@ public class Intefaz extends javax.swing.JFrame {
 
         jLabel14.setText("Valor a Recargar");
 
-        jButton5.setText("Recargar");
+        textIdRecargarCaja.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textIdRecargarCajaKeyTyped(evt);
+            }
+        });
+
+        textValorRecargar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textValorRecargarKeyTyped(evt);
+            }
+        });
+
+        recargarBoton.setText("Recargar");
+        recargarBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                recargarBotonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -765,10 +835,10 @@ public class Intefaz extends javax.swing.JFrame {
                     .addComponent(jLabel14))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField9)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textIdRecargarCaja)
+                    .addComponent(textValorRecargar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton5)
+                .addComponent(recargarBoton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
@@ -778,19 +848,24 @@ public class Intefaz extends javax.swing.JFrame {
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel13)
-                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(textIdRecargarCaja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel14)
-                            .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(textValorRecargar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton5)))
+                        .addComponent(recargarBoton)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton6.setFont(new java.awt.Font("Myanmar Text", 1, 14)); // NOI18N
-        jButton6.setText("Generar un Reporte");
+        generarReporteBoton.setFont(new java.awt.Font("Myanmar Text", 1, 14)); // NOI18N
+        generarReporteBoton.setText("Generar un Reporte");
+        generarReporteBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generarReporteBotonActionPerformed(evt);
+            }
+        });
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Siguiente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
@@ -801,13 +876,13 @@ public class Intefaz extends javax.swing.JFrame {
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel18.setText("Cliente");
 
-        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(102, 102, 255));
-        jLabel17.setText("0");
+        labelCaja.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        labelCaja.setForeground(new java.awt.Color(102, 102, 255));
+        labelCaja.setText("0");
 
-        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(102, 51, 255));
-        jLabel19.setText("0");
+        labelSiguienteCliente.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        labelSiguienteCliente.setForeground(new java.awt.Color(102, 51, 255));
+        labelSiguienteCliente.setText("0");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -819,11 +894,11 @@ public class Intefaz extends javax.swing.JFrame {
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(labelCaja, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(jLabel18)
                         .addGap(45, 45, 45)
-                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(labelSiguienteCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(109, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
@@ -832,10 +907,10 @@ public class Intefaz extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel16)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelCaja, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelSiguienteCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                         .addComponent(jLabel18)
                         .addGap(12, 12, 12)))
@@ -847,7 +922,18 @@ public class Intefaz extends javax.swing.JFrame {
 
         jLabel27.setText("ID Caja");
 
-        jButton7.setText("Ver Cola");
+        textVercola.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textVercolaKeyTyped(evt);
+            }
+        });
+
+        botonVerCola.setText("Ver Cola");
+        botonVerCola.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonVerColaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);
@@ -861,7 +947,7 @@ public class Intefaz extends javax.swing.JFrame {
                 .addGap(19, 19, 19))
             .addGroup(jPanel18Layout.createSequentialGroup()
                 .addGap(135, 135, 135)
-                .addComponent(jButton7)
+                .addComponent(botonVerCola)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel18Layout.setVerticalGroup(
@@ -872,7 +958,7 @@ public class Intefaz extends javax.swing.JFrame {
                     .addComponent(jLabel27)
                     .addComponent(textVercola, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton7))
+                .addComponent(botonVerCola))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -897,7 +983,7 @@ public class Intefaz extends javax.swing.JFrame {
                                 .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGap(568, 568, 568)
-                            .addComponent(jButton6)))
+                            .addComponent(generarReporteBoton)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -943,7 +1029,7 @@ public class Intefaz extends javax.swing.JFrame {
                         .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(generarReporteBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1008,6 +1094,8 @@ public class Intefaz extends javax.swing.JFrame {
                  JOptionPane.showMessageDialog(this, banco.verCliente(Integer.parseInt(textBuscarCliente.getText())));
                  textBuscarCliente.setText("");
         }
+        else
+            JOptionPane.showMessageDialog(this, "Debe ingresar un numero de documento");
     }//GEN-LAST:event_buscarClienteActionPerformed
 
     private void botonAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarClienteActionPerformed
@@ -1025,6 +1113,122 @@ public class Intefaz extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Campos Vacios!");
     
     }//GEN-LAST:event_botonAgregarClienteActionPerformed
+
+    private void validarSoloNumeros(java.awt.event.KeyEvent evt){
+        char validar = evt.getKeyChar();
+        
+        if(Character.isLetter(validar)){
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "Ingresa solo numeros");
+        }
+    }
+    
+    private void textIdentificadorAgregarCajaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textIdentificadorAgregarCajaKeyTyped
+        validarSoloNumeros(evt);
+    }//GEN-LAST:event_textIdentificadorAgregarCajaKeyTyped
+
+    private void textDineroAgragarCajaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textDineroAgragarCajaKeyTyped
+        validarSoloNumeros(evt);
+    }//GEN-LAST:event_textDineroAgragarCajaKeyTyped
+
+    private void textEliminarCajaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textEliminarCajaKeyTyped
+        validarSoloNumeros(evt);
+    }//GEN-LAST:event_textEliminarCajaKeyTyped
+
+    private void textBuscarClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textBuscarClienteKeyTyped
+        validarSoloNumeros(evt);
+    }//GEN-LAST:event_textBuscarClienteKeyTyped
+
+    private void textVercolaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textVercolaKeyTyped
+        validarSoloNumeros(evt);
+    }//GEN-LAST:event_textVercolaKeyTyped
+
+    private void textAgregarClienteDocKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textAgregarClienteDocKeyTyped
+        validarSoloNumeros(evt);
+    }//GEN-LAST:event_textAgregarClienteDocKeyTyped
+
+    private void textEdadAgregarClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textEdadAgregarClienteKeyTyped
+        validarSoloNumeros(evt);
+    }//GEN-LAST:event_textEdadAgregarClienteKeyTyped
+
+    private void textIddespacharKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textIddespacharKeyTyped
+        validarSoloNumeros(evt);
+    }//GEN-LAST:event_textIddespacharKeyTyped
+
+    private void textValorTransDespacharKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textValorTransDespacharKeyTyped
+        validarSoloNumeros(evt);
+    }//GEN-LAST:event_textValorTransDespacharKeyTyped
+
+    private void textIdRecargarCajaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textIdRecargarCajaKeyTyped
+       validarSoloNumeros(evt);
+    }//GEN-LAST:event_textIdRecargarCajaKeyTyped
+
+    private void textValorRecargarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textValorRecargarKeyTyped
+        validarSoloNumeros(evt);
+    }//GEN-LAST:event_textValorRecargarKeyTyped
+
+    private void despacharBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_despacharBotonActionPerformed
+         if(!textIddespachar.getText().isEmpty() && !textValorTransDespachar.getText().isEmpty()){
+            boolean despacho = banco.despacharCliente(Integer.parseInt(textIddespachar.getText()),
+                    Double.parseDouble(textValorTransDespachar.getText()));
+            Caja c = banco.buscarCaja(Integer.parseInt(textIddespachar.getText()));
+            if(despacho){
+                    JOptionPane.showMessageDialog(this, "Cliente despachado");
+                    labelCaja.setText(textIddespachar.getText());
+                    if(!c.getClientesCola().isEmpty()){
+                    labelSiguienteCliente.setText(String.valueOf(c.getClientesCola().peek().getDocumento()));
+                    }else
+                        labelSiguienteCliente.setText("Terminó");
+            }else if(c.getTipoTransaccion().equals("Retiro") && banco.tieneClientes(Integer.parseInt(textIddespachar.getText()))){
+                JOptionPane.showMessageDialog(this, "Por favor recargue la caja");
+            }else
+                JOptionPane.showMessageDialog(this, "No hay clientes en la caja seleccionada");
+            textIddespachar.setText(""); 
+            textValorTransDespachar.setText("");
+            
+        }else
+            JOptionPane.showMessageDialog(this, "Campos Vacios!");
+    }//GEN-LAST:event_despacharBotonActionPerformed
+
+    private void recargarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recargarBotonActionPerformed
+            if(!textIdRecargarCaja.getText().isEmpty() && !textValorRecargar.getText().isEmpty()){
+            boolean recargo = banco.recargarCaja(Integer.parseInt(textIdRecargarCaja.getText()),
+                    Double.parseDouble(textValorRecargar.getText()));
+            if(recargo){
+                    JOptionPane.showMessageDialog(this, "Se recargo la caja");
+                   
+            }else
+                JOptionPane.showMessageDialog(this, "La caja no es de retiro o no existe");
+            textIddespachar.setText(""); 
+            textValorTransDespachar.setText("");
+            
+        }else
+            JOptionPane.showMessageDialog(this, "Campos Vacios!");
+    }//GEN-LAST:event_recargarBotonActionPerformed
+
+    private void botonVerColaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVerColaActionPerformed
+         if(!textVercola.getText().isEmpty()){
+            InterfazReporte interfas = new InterfazReporte();
+            interfas.setBounds(0,0,540,400);
+            interfas.setVisible(true);
+            interfas.setResizable(false);
+            interfas.setLocationRelativeTo(null);
+            interfas.textArea.setText(banco.verClientes(Integer.parseInt(textVercola.getText())));
+            textVercola.setText("");
+            
+        }else
+            JOptionPane.showMessageDialog(this, "Campos Vacios!");
+    }//GEN-LAST:event_botonVerColaActionPerformed
+
+    private void generarReporteBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarReporteBotonActionPerformed
+          InterfazReporte interfas = new InterfazReporte();
+          interfas.setBounds(0,0,540,400);
+          interfas.setVisible(true);
+          interfas.setResizable(false);
+          interfas.setLocationRelativeTo(null);
+          interfas.textArea.setText(banco.generarReporte());
+    }//GEN-LAST:event_generarReporteBotonActionPerformed
 
     public void desactivarCaja(int pos){
         if(pos>0 && pos <9){
@@ -1206,13 +1410,12 @@ public class Intefaz extends javax.swing.JFrame {
     private javax.swing.JLabel JLableDinero8;
     private javax.swing.JButton agregarCajaBoton;
     private javax.swing.JButton botonAgregarCliente;
+    private javax.swing.JButton botonVerCola;
     private javax.swing.JButton buscarCliente;
     private javax.swing.JComboBox<String> comboBoxAgregarCaja;
     private javax.swing.JComboBox<String> comboTransaccionAgregarCliente;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
+    private javax.swing.JButton despacharBoton;
+    private javax.swing.JButton generarReporteBoton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1221,9 +1424,7 @@ public class Intefaz extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
@@ -1250,10 +1451,6 @@ public class Intefaz extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JPanel jpanelCaja1;
     private javax.swing.JPanel jpanelcaja2;
     private javax.swing.JPanel jpanelcaja3;
@@ -1262,12 +1459,19 @@ public class Intefaz extends javax.swing.JFrame {
     private javax.swing.JPanel jpanelcaja6;
     private javax.swing.JPanel jpanelcaja7;
     private javax.swing.JPanel jpanelcaja8;
+    private javax.swing.JLabel labelCaja;
+    private javax.swing.JLabel labelSiguienteCliente;
+    private javax.swing.JButton recargarBoton;
     private javax.swing.JTextField textAgregarClienteDoc;
     private javax.swing.JTextField textBuscarCliente;
     private javax.swing.JTextField textDineroAgragarCaja;
     private javax.swing.JTextField textEdadAgregarCliente;
     private javax.swing.JTextField textEliminarCaja;
+    private javax.swing.JTextField textIdRecargarCaja;
+    private javax.swing.JTextField textIddespachar;
     private javax.swing.JTextField textIdentificadorAgregarCaja;
+    private javax.swing.JTextField textValorRecargar;
+    private javax.swing.JTextField textValorTransDespachar;
     private javax.swing.JTextField textVercola;
     // End of variables declaration//GEN-END:variables
 }
