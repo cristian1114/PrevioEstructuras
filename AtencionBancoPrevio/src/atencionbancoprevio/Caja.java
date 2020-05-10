@@ -88,17 +88,6 @@ public class Caja implements Comparable<Caja>{
         }
     return null;
     }
-//    
-//    public Cliente  buscarClienteAtendidos(int documento){
-//        
-//        for(Cliente cliente: this.clientesAtendidos){
-//            if(cliente.getDocumento()==documento){
-//                return cliente;
-//            }
-//        }
-//    return null;
-//    }
-    // GETTERS AND SETTERS
 
     public int getIdentificador() {
         return identificador;
@@ -157,7 +146,7 @@ public class Caja implements Comparable<Caja>{
     
     @Override
     public int compareTo(Caja o) {
-
+        
         if(this.getTiempoEspera() > o.getTiempoEspera())
             return 1;
         if(this.getTiempoEspera() < o.getTiempoEspera())

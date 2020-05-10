@@ -44,6 +44,11 @@ public class Cliente implements Comparable<Cliente>{
     public void setEdad(int edad) {
         this.edad = edad;
     }
+
+    @Override
+    public String toString() {
+        return "Cliente : \nDocumento : " + documento + "\nEdad : " + edad;
+    }
     
     
 

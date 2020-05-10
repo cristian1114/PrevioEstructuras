@@ -25,8 +25,12 @@ public class Banco{
         return this.cajas.getFirst();
     }
     
-    public void agregarCaja(int numCaja, String tipoTransaccion, double dineroInicial){
-        cajas.add(new Caja(numCaja, tipoTransaccion, dineroInicial));
+    public boolean agregarCaja(int numCaja, String tipoTransaccion, double dineroInicial){
+        if(buscarCaja(numCaja)==null){
+            cajas.add(new Caja(numCaja, tipoTransaccion, dineroInicial));
+            return true;
+        }
+        return false;
     }
     
     public boolean recargarCaja(int numCaja, double monto){
@@ -40,21 +44,42 @@ public class Banco{
         return false;
     }
     
-    public void eliminarCaja(int numCaja){
+    public boolean tieneClientes(int numCaja){
+        Caja c = buscarCaja(numCaja);
+        if(c!=null){
+            if(!c.getClientesCola().isEmpty())
+                return true; 
+        }
+        return false;
+    }
+    
+    public boolean eliminarCaja(int numCaja){
         
-        if(this.cajas.isEmpty())
-            return;
-        
-        Caja x = cajas.get(numCaja-1);
-        
-        if(!x.getClientesCola().isEmpty())
-            cajas.remove(numCaja-1);
+        if(!this.tieneClientes(numCaja)){
+            this.getCajas().remove(getPos(numCaja));
+            return true;
+        }
+        return false;
+    }
+    
+    public int getPos(int numCaja){
+        int i = 0;
+        for (Caja c : this.getCajas()) {
+           if(c.getIdentificador() == numCaja)
+                return i;
+           i++;
+        }
+        return -1;
     }
     
     public Caja buscarCaja(int numCaja){
-        if(this.cajas.isEmpty())
-            return null;
-        return this.cajas.get(numCaja-1);
+        if(!this.cajas.isEmpty()){
+        for (Caja c : this.getCajas()) {
+            if(c.getIdentificador() == numCaja)
+                return c;
+        }
+        }
+        return null;
     }
     
     public String verClientes(int numCaja){
@@ -64,6 +89,19 @@ public class Banco{
                 return c.verClientes();
         }
         return "No hay personas en espera";
+    }
+    
+    public String verCliente(int idCliente){
+        Cliente cliente;
+        int i = 1;
+        for (Caja c : cajas) {
+            cliente = c.buscarClienteCola(idCliente);
+            if (cliente!=null) {
+                return "El cliente \nDocumento : "+cliente.getDocumento()+"\nEdad : "+cliente.getEdad()+"\nSe encuentra en la caja "+i;
+            }
+            i++;
+        }
+        return "No se encontro el cliente";
     }
     
     public Cliente buscarCliente(int idCliente){
