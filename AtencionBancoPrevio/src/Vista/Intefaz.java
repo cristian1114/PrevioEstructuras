@@ -8,7 +8,6 @@ package Vista;
 import atencionbancoprevio.Banco;
 import atencionbancoprevio.Caja;
 import atencionbancoprevio.Cliente;
-import atencionbancoprevio.InterfazReporte;
 import javafx.scene.paint.Color;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;

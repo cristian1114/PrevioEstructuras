@@ -10,6 +10,7 @@ package atencionbancoprevio;
  *
  * @author johan leon
  */
+import Vista.InterfazReporte;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
