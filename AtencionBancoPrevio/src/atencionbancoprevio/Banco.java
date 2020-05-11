@@ -93,13 +93,13 @@ public class Banco{
     
     public String verCliente(int idCliente){
         Cliente cliente;
-        int i = 1;
+        int i = 0;
         for (Caja c : cajas) {
             cliente = c.buscarClienteCola(idCliente);
+            i = c.getIdentificador();
             if (cliente!=null) {
                 return "El cliente \nDocumento : "+cliente.getDocumento()+"\nEdad : "+cliente.getEdad()+"\nSe encuentra en la caja "+i;
             }
-            i++;
         }
         return "No se encontro el cliente";
     }

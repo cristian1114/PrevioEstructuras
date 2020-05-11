@@ -64,7 +64,7 @@ public class Caja implements Comparable<Caja>{
     public String verClientes(){
         String rta = "";
         for(Cliente c : this.clientesCola){
-            rta+="Documento "+c.getDocumento()+"\n Edad: "+c.getEdad()+"\n\n";
+            rta+=c.toString()+"\n\n";
         }
         return rta;
     }
