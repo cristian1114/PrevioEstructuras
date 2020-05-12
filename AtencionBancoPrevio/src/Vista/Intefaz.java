@@ -1069,13 +1069,13 @@ public class Intefaz extends javax.swing.JFrame {
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
         if(!textEliminarCaja.getText().isEmpty()){
         
-            if(banco.tieneClientes(Integer.parseInt(textEliminarCaja.getText()))){
-                JOptionPane.showMessageDialog(this, "La caja tiene clientes en espera");
-            }
-            else if(banco.eliminarCaja(Integer.parseInt(textEliminarCaja.getText()))){
+            if(banco.eliminarCaja(Integer.parseInt(textEliminarCaja.getText()))){
                 desactivarCaja(Integer.parseInt(textEliminarCaja.getText()));
                 textEliminarCaja.setText("");
                 JOptionPane.showMessageDialog(this, "Se elimino la caja");
+            }
+            else if(banco.tieneClientes(Integer.parseInt(textEliminarCaja.getText()))){
+                JOptionPane.showMessageDialog(this, "La caja tiene clientes en espera");
             }
             else
                 JOptionPane.showMessageDialog(this, "La caja no existe");
@@ -1168,6 +1168,7 @@ public class Intefaz extends javax.swing.JFrame {
          if(!textIddespachar.getText().isEmpty() && !textValorTransDespachar.getText().isEmpty()){
             boolean despacho = banco.despacharCliente(Integer.parseInt(textIddespachar.getText()),
                     Double.parseDouble(textValorTransDespachar.getText()));
+             System.out.println(despacho);
             Caja c = banco.buscarCaja(Integer.parseInt(textIddespachar.getText()));
             if(despacho){
                     JOptionPane.showMessageDialog(this, "Cliente despachado");
@@ -1176,10 +1177,10 @@ public class Intefaz extends javax.swing.JFrame {
                     labelSiguienteCliente.setText(String.valueOf(c.getClientesCola().peek().getDocumento()));
                     }else
                         labelSiguienteCliente.setText("Terminó");
-            }else if(c.getTipoTransaccion().equals("Retiro") && banco.tieneClientes(Integer.parseInt(textIddespachar.getText()))){
+            }else if(c!= null && c.getTipoTransaccion().equals("Retiro") && banco.tieneClientes(Integer.parseInt(textIddespachar.getText()))){
                 JOptionPane.showMessageDialog(this, "Por favor recargue la caja");
             }else
-                JOptionPane.showMessageDialog(this, "No hay clientes en la caja seleccionada");
+                JOptionPane.showMessageDialog(this, "La caja esta cerrada o no tiene clientes en cola");
             textIddespachar.setText(""); 
             textValorTransDespachar.setText("");
             

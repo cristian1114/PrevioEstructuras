@@ -54,10 +54,14 @@ public class Banco{
     }
     
     public boolean eliminarCaja(int numCaja){
-        
-        if(!this.tieneClientes(numCaja)){
-            this.getCajas().remove(getPos(numCaja));
-            return true;
+       
+        try{
+            if(!this.tieneClientes(numCaja)){
+                this.getCajas().remove(getPos(numCaja));
+                return true;
+            }
+        }catch(Exception e){
+            return false;
         }
         return false;
     }
@@ -134,7 +138,6 @@ public class Banco{
     
     public boolean despacharCliente(int idCaja, double valorTransaccion){
         
-        Caja caja;
         for (Caja c : this.cajas) {
             if (c.getIdentificador()==idCaja) {
                 if(c.despacharCliente(valorTransaccion))//si la caja tiene dinero lo despacho
