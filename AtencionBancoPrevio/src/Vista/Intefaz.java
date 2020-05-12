@@ -1168,7 +1168,6 @@ public class Intefaz extends javax.swing.JFrame {
          if(!textIddespachar.getText().isEmpty() && !textValorTransDespachar.getText().isEmpty()){
             boolean despacho = banco.despacharCliente(Integer.parseInt(textIddespachar.getText()),
                     Double.parseDouble(textValorTransDespachar.getText()));
-             System.out.println(despacho);
             Caja c = banco.buscarCaja(Integer.parseInt(textIddespachar.getText()));
             if(despacho){
                     JOptionPane.showMessageDialog(this, "Cliente despachado");
@@ -1293,49 +1292,49 @@ public class Intefaz extends javax.swing.JFrame {
                     jpanelCaja1.setBackground(java.awt.Color.ORANGE);
                     JLabelid1.setText("Id : "+String.valueOf(pos));
                     JLabelTipo1.setText(comboBoxAgregarCaja.getSelectedItem().toString());
-                    JLableDinero1.setText(String.valueOf(dinero));
+                    JLableDinero1.setText("$ : "+String.valueOf(dinero));
                     break;
             case 2:
                     jpanelcaja2.setBackground(java.awt.Color.ORANGE);
                     JLabelid2.setText("Id : "+String.valueOf(pos));
                     JLabelTipo2.setText(comboBoxAgregarCaja.getSelectedItem().toString());
-                    JLableDinero2.setText(String.valueOf(dinero));
+                    JLableDinero2.setText("$ : "+String.valueOf(dinero));
                     break;
             case 3:
                     jpanelcaja3.setBackground(java.awt.Color.ORANGE);
                     JLabelid3.setText("Id : "+String.valueOf(pos));
                     JLabelTipo3.setText(comboBoxAgregarCaja.getSelectedItem().toString());
-                    JLableDinero3.setText(String.valueOf(dinero));
+                    JLableDinero3.setText("$ : "+String.valueOf(dinero));
                     break;
             case 4:
                     jpanelcaja4.setBackground(java.awt.Color.ORANGE);
                     JLabelid4.setText("Id : "+String.valueOf(pos));
                     JLabelTipo4.setText(comboBoxAgregarCaja.getSelectedItem().toString());
-                    JLableDinero4.setText(String.valueOf(dinero));
+                    JLableDinero4.setText("$ : "+String.valueOf(dinero));
                     break;
             case 5:
                     jpanelcaja5.setBackground(java.awt.Color.ORANGE);
                     JLabelid5.setText("Id : "+String.valueOf(pos));
                     JLabelTipo5.setText(comboBoxAgregarCaja.getSelectedItem().toString());
-                    JLableDinero5.setText(String.valueOf(dinero));
+                    JLableDinero5.setText("$ : "+String.valueOf(dinero));
                     break;
             case 6:
                     jpanelcaja6.setBackground(java.awt.Color.ORANGE);
                     JLabelid6.setText("Id : "+String.valueOf(pos));
                     JLabelTipo6.setText(comboBoxAgregarCaja.getSelectedItem().toString());
-                    JLableDinero6.setText(String.valueOf(dinero));
+                    JLableDinero6.setText("$ : "+String.valueOf(dinero));
                     break;
             case 7:
                     jpanelcaja7.setBackground(java.awt.Color.ORANGE);
                     JLabelid7.setText("Id : "+String.valueOf(pos));
                     JLabelTipo7.setText(comboBoxAgregarCaja.getSelectedItem().toString());
-                    JLableDinero7.setText(String.valueOf(dinero));
+                    JLableDinero7.setText("$ : "+String.valueOf(dinero));
                     break;
             case 8:
                     jpanelcaja8.setBackground(java.awt.Color.ORANGE);
                     JLabelid8.setText("Id : "+String.valueOf(pos));
                     JLabelTipo8.setText(comboBoxAgregarCaja.getSelectedItem().toString());
-                    JLableDinero8.setText(String.valueOf(dinero));
+                    JLableDinero8.setText("$ : "+String.valueOf(dinero));
                     break;
         }
         }
