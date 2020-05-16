@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package atencionbancoprevio;
-import java.util.LinkedList;
 import java.util.PriorityQueue;
 
 /**
