@@ -125,7 +125,7 @@ public class Interfaz extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(51, 153, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del contacto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -402,11 +402,11 @@ public class Interfaz extends javax.swing.JFrame {
             Contacto c = directorio.buscarContacto(buscarText.getText());
             if(c!=null){
                 JOptionPane.showMessageDialog(this, c.toString2());
-                buscarText.setText("");
             }else
                 JOptionPane.showMessageDialog(this, "No se encontro el contacto :(");
-        }
-        JOptionPane.showMessageDialog(this, "Campos vacios!");
+        }else
+            JOptionPane.showMessageDialog(this, "Campos vacios!");
+        buscarText.setText("");
     }//GEN-LAST:event_buscarBotonActionPerformed
 
     private void nombreTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreTextKeyTyped
